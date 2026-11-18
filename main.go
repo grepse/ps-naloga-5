@@ -1,3 +1,4 @@
+// program ps-naloga-5 vodi vremenske postaje in izpisuje poročila
 package main
 
 import (
