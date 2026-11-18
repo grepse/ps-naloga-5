@@ -7,6 +7,8 @@ import (
 	"slices"
 )
 
+// Postaja je vremenska postaja z imenom, krejem in seznamom meritev
+// ustarimo jo s funkcijo DodajPostajo
 type Postaja struct {
 	ime     string
 	kraj    string
@@ -21,12 +23,14 @@ var (
 	stMeritev = 3
 )
 
+// Nastavi doloci min, max temeperaturo in pa najmanjse dovoljeno stevilo meritev
 func Nastavi(min, max float64, st int) {
 	minTemp = min
 	maxTemp = max
 	stMeritev = st
 }
 
+// DodajPostajo doda novo postajo s podano oznako, imenom in krajem
 func DodajPostajo(oznaka string, ime string, kraj string) {
 	postaje[oznaka] = Postaja{
 		ime:  ime,
@@ -34,6 +38,7 @@ func DodajPostajo(oznaka string, ime string, kraj string) {
 	}
 }
 
+// DodajMeritev doda novo meritev v seznam meritev podane postaje (preko oznake)
 func DodajMeritev(oznaka string, temperatura float64) {
 	// na to postajo doda novo meritev
 	postaja, ok := postaje[oznaka]
@@ -52,6 +57,7 @@ func DodajMeritev(oznaka string, temperatura float64) {
 	postaje[oznaka] = postaja
 }
 
+// IzpisMeritev izpise vse meritve in postaje kjer so te meritve zapisane
 func IzpisMeritev() {
 	st := len(postaje)
 
@@ -94,6 +100,8 @@ func statistika(oznaka string) (float64, float64, float64, bool) {
 	return najnizja, najvisja, avg, true
 }
 
+// IzpisPorocila za vsako postajo izpise mintemp, maxtemp in avg temp in pa oceno vremena
+// za postaje s premalo meritvami napise opozoriloc
 func IzpisPorocila() {
 	st := len(postaje)
 	if st < 1 {
